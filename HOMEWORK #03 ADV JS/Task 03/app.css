@@ -1,0 +1,21 @@
+body{
+    font-family: sans-serif;
+}
+
+
+td{
+    border: 2px solid rgb(103, 103, );
+    background-color: skyblue;
+}
+
+table{
+    
+    background-color: lightblue;
+}
+
+.next{
+    display: none;
+}
+.previous{
+    display: none;
+}
