@@ -3,57 +3,56 @@ let shipsImage = document.querySelector('#ships_img')
 let nextBtn = document.querySelector('#next_button')
 let previousBtn = document.querySelector('#back_button')
 
-peopleImage.addEventListener('click',getPeopleFetch)
-nextBtn.addEventListener('click',nextURL)
-previousBtn.addEventListener('click',getPeopleFetch)
+peopleImage.addEventListener('click', getPeopleFetch)
+nextBtn.addEventListener('click', next)
+previousBtn.addEventListener('click', previous)
 
-// let peopleUrL = "https://swapi.dev/api/people/?page=1"
-// let nextPeopleUrl = "https://swapi.dev/api/people/?page=2"
-let urls = [
-"https://swapi.dev/api/people/?page=1",
-"https://swapi.dev/api/people/?page=2",
-"https://swapi.dev/api/people/?page=3",
-"https://swapi.dev/api/people/?page=4",
-"https://swapi.dev/api/people/?page=5",
-"https://swapi.dev/api/people/?page=6",
-"https://swapi.dev/api/people/?page=7",
-"https://swapi.dev/api/people/?page=8",
-"https://swapi.dev/api/people/?page=9"
-]
-let mainUrl = "https://swapi.dev/api/people/"
+let peopleurl = "https://swapi.dev/api/people/?page="
+let shipsUrl = "https://swapi.dev/api/starships/?page="
+let pageNumber = 1
 
 
 
-function nextURL(){
-      let nexturl=`${mainUrl}?page=${page}`
-      console.log(nexturl)
-      fetch(nexturl)
-      .then(function(res){
+
+function previous() {
+   pageNumber--
+   fetch(`${peopleurl}${pageNumber}`)
+      .then(function (res) {
          return res.json()
       })
-      .then(function(data){
-         printPeople(mainEl , data)
+      .then(function (data) {
+         printPeople(mainEl, data)
       })
-      
-     
-    
-    
-   } 
-   
-   
-// function next(){
-//    fetch(urls[2])
-//    .then(function(res){
-//       return res.json()
-//    })
-//    .then(function(data){
-//       printPeople(mainEl,data)
-//    })
- 
+   nextBtn.style.display = 'block'
+   if (pageNumber === 1) {
+      previousBtn.style.display = 'none'
+   }
+}
+
+function next() {
+   pageNumber++
+   fetch(`${peopleurl}${pageNumber}`)
+      .then(function (res) {
+         return res.json()
+      })
+      .then(function (data) {
+         printPeople(mainEl, data)
+      })
+
+   if (pageNumber === 9) {
+      nextBtn.style.display = 'none'
+   } else (pageNumber < 1)
+   previousBtn.style.display = 'block'
 
 
 
-function getPeopleFetch(){
+
+}
+
+
+
+
+function getPeopleFetch() {
 
    let tableWindow = document.querySelector('.table_div')
    let shadow = document.querySelector('.overlay')
@@ -62,23 +61,21 @@ function getPeopleFetch(){
    tableWindow.style.display = 'block'
    shadow.style.display = 'block'
    h1Text.style.display = "block"
-   
-   fetch(urls[0])
-   let peopleurl = `${mainUrl}?page=${page}`
-   .then(function(res){
-      return res.json()
-   })
-   .then(function(data){
-      printPeople(mainEl , data)
-   })
+   fetch(`${peopleurl}${pageNumber}`)
+      .then(function (res) {
+         return res.json()
+      })
+      .then(function (data) {
+         printPeople(mainEl, data)
+      })
 
 }
 
 
 
-function printPeople(mainEl,peopleData) {
-   let tableContent =""
-   mainEl=`
+function printPeople(mainEl, peopleData) {
+   let tableContent = ""
+   mainEl = `
       <tbody>
       <tr>
          <th>Name:</th>
@@ -92,8 +89,8 @@ function printPeople(mainEl,peopleData) {
 
       
    `
-    for(people of peopleData.results){
-      tableContent +=`
+   for (people of peopleData.results) {
+      tableContent += `
          <tr>
             <td>${people.name}</td>
             <td>${people.height}cm</td>
@@ -105,80 +102,82 @@ function printPeople(mainEl,peopleData) {
           
          </tr>
       `
-    }
+   }
 
-    document.querySelector('#mainEl').innerHTML=mainEl
-    document.querySelector('table').innerHTML += tableContent
-  
-   
+   document.querySelector('#mainEl').innerHTML = mainEl
+   document.querySelector('table').innerHTML += tableContent
+
+
 }
 
-  
-
-
-  
 
 
 
+function printShips(mainEl, shipsData) {
+   let tableContent = ""
+   mainEl = `
+      <tbody>
+      <tr>
+         <th>Name:</th>
+         <th>Model:</th>
+         <th>Manufacturer:</th>
+         <th>Cost:</th>
+         <th>People Capacity:</th>
+         <th>Class:</th>
+      </tr>
+      </tbody>
+   `
+
+   for (ships of shipsData.results) {
+
+
+      if (ships.crew.includes('unknown' && 'n/a')) {
+         ships.crew = 0
+
+      } if (ships.passengers.includes("unknown" && 'n/a')) {
+         ships.passengers = 0
+      }
+      let sum = ships.crew * ships.passengers
+      sum = parseInt(sum)
+      tableContent += `
+              <tr>
+                 <td>${ships.name}</td>
+                 <td>${ships.model}</td>
+                 <td>${ships.manufacturer}kg</td>
+                 <td>${ships.cost_in_credits}credits</td>
+                 <td>${sum}</td>
+                 <td>${ships.starship_class}</td>
+              </tr>
+           `
+   }
+   document.querySelector('#mainEl').innerHTML = mainEl
+   document.querySelector('table').innerHTML += tableContent
+}
 
 
 
 
-// function printShips(data) {
-//    let resultTable = document.getElementsByTagName('tbody')[0]
-//    resultTable.innerHTML = ""
-//    resultTable.innerHTML += `
-//    <tr>
-//       <td>Name:</td>
-//       <td>${data.name}</td>
-//    </tr>   
-//    <tr>
-//        <td>Model:</td>
-//       <td>${data.model}</td>
-//    </tr>  
-//    <tr>
-//       <td>Manufacturer:</td>
-//       <td>${data.manufacturer}</td>
-//    </tr>  
-//    <tr>
-//       <td>Cost:</td>
-//       <td>${data.cost_in_credits} credits</td>
-//    </tr>  
-//    <tr>
-//       <td>People Capacity:</td>
-//       <td>${data.crew + data.passengers}</td>
-//    </tr>  
-//    <tr>
-//       <td>Class:</td>
-//       <td>${data.starship_class}</d>
-   
-//    `
-// }
+shipsImage.addEventListener("click", function () {
+
+   fetch(`${shipsUrl}${pageNumber}`)
+      .then(function (res) {
+         return res.json()
+      })
+      .then(function (data) {
+
+         printShips(mainEl, data)
+      })
 
 
 
-// shipsImage.addEventListener("click", function () {
+   let tableWindow = document.querySelector('.table_div')
+   let shadow = document.querySelector('.overlay')
+   let h1TextS = document.querySelector('.h1Ships')
 
-//    fetch('https://swapi.dev/api/starships/?page=1')
-//    .then(function (data) {
-//       console.log('SUCCESS');
-//       return data.json()
-//    })
-//    .then(function (myJson) {
-//       console.log(myJson)
-//       printShips(myJson)
-//    })
+   tableWindow.style.display = 'block'
+   shadow.style.display = 'block'
+   h1TextS.style.display = 'block'
 
 
 
-//    let tableWindow = document.querySelector('.table_div')
-//    let shadow = document.querySelector('.overlay')
-//    let h1TextS = document.querySelector('.h1Ships')
-
-//    tableWindow.style.display = 'block'
-//    shadow.style.display = 'block'
-//    h1TextS.style.display = 'block'
-
-   
-
-// })
+})
