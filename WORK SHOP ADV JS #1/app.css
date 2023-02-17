@@ -1,102 +1,210 @@
 body {
-
-    font-family: 'Star Jedi', arial;
-    background-image: url(./IMAGES/co341S.webp);
+  font-family: "Star Jedi", arial;
+  background-image: url(./IMAGES/co341S.webp);
 }
 
-
-
-header{
-    padding: 0%;
-    margin: 0px;
-    display: flex;
-    justify-content: center;
-
-}
-    
-
-
-.logo_img{
-    width: 400px;
-    height: 300px;
+header {
+  padding: 0%;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
 }
 
-
-
-
-img{
-    width: 500px;
-    height: 500px;
-}
- 
-
-.main_div{
-    display: flex;
-    justify-content: space-around;
-
-    margin-top: 100px;
+.logo_img {
+  width: 400px;
+  height: 300px;
 }
 
-.button_div{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
-}
-#back_button{
-    display: none;
-    
-}
-
-.table_div{
-    display: none;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    left: 0%;
-    right: 0%;
-    top: 2%;
-    z-index: 200;
-    max-width: min-content;
-    margin-top: 10px;
-    padding: 30px;
-    margin: auto ;
-    background-color: lightblue;
-    opacity: 90%;
-    
+img {
+  width: 500px;
+  height: 500px;
+  border-radius: 18%;
+  padding: 10px 50px;
+  border: none;
+  transition: 1000ms;
+  transform: translateY(0);
 }
 
-.overlay{
-    display: none;
-    position: fixed;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    
-    background-color: rgba(0, 0, 0, 0.5);
+img:hover {
+  transition: 1000ms;
+  transform: translateY(-20px);
+  border: none;
 }
 
-.h1People{
-    display: none;
-    font-size: 30px;
-    color: rgb(0, 0, 0);
-}
-.h1Ships{
-    display: none;
-    color: rgb(0, 0, 0);
+.main_div {
+  display: flex;
+  justify-content: space-around;
+
+  margin-top: 100px;
 }
 
+.button_div {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+#back_button {
+  display: none;
+  font-weight: 0;
+  font-size: 14px;
+  color: black;
+  background: linear-gradient(90deg, #0509e3 0%, #c500cc 100%);
+  padding: 10px 50px;
+  border: none;
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+  border-radius: 50px;
+  transition: 1000ms;
+  transform: translateY(0);
+}
+
+#back_button:hover {
+  transition: 1000ms;
+  transform: translateY(-6px);
+  background: linear-gradient(90deg, #0066cc 0%, #c500cc 100%);
+  color: 332fd0;
+  border: none;
+}
+#next_button {
+  font-weight: 0;
+  font-size: 14px;
+  color: black;
+  background: linear-gradient(90deg, #0509e3 0%, #c500cc 100%);
+  padding: 10px 50px;
+  border: none;
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+  border-radius: 50px;
+  transition: 1000ms;
+  transform: translateY(0);
+}
+
+#next_button:hover {
+  transition: 1000ms;
+  transform: translateY(-6px);
+  background: linear-gradient(90deg, #0066cc 0%, #c500cc 100%);
+  color: 332fd0;
+  border: none;
+}
+
+.table_div {
+  display: none;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  left: 0%;
+  right: 0%;
+  top: 2%;
+  z-index: 200;
+  max-width: min-content;
+  margin-top: 10px;
+  padding: 30px;
+  margin: auto;
+  background-color: 332fd0;
+  opacity: 90%;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.h1People {
+  display: none;
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+}
+.h1Ships {
+  display: none;
+  color: rgb(0, 0, 0);
+}
 
 td {
-    text-align: center;
-    text-transform: capitalize;
-    width: 50%;
-    height: auto;
-    font-size: 20px;
-    border: 3px solid rgb(0, 0, 0);
-    padding: 20px;
-    background-image: linear-gradient(rgb(17, 74, 159),rgb(241, 251, 255));
-    
+  text-align: center;
+  text-transform: capitalize;
+  width: 50%;
+  height: auto;
+  font-size: 20px;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.secondButton_div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#nextShips_button {
+  font-weight: 0;
+  font-size: 14px;
+  color: black;
+  background: linear-gradient(90deg, #0509e3 0%, #c500cc 100%);
+  padding: 10px 50px;
+  border: none;
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+  border-radius: 50px;
+  transition: 1000ms;
+  transform: translateY(0);
+}
+
+#nextShips_button:hover {
+  transition: 1000ms;
+  transform: translateY(-6px);
+  background: linear-gradient(90deg, #0066cc 0%, #c500cc 100%);
+  color: 332fd0;
+  border: none;
+}
+
+#previousShips_button {
+  font-weight: 0;
+  font-size: 14px;
+  color: black;
+  background: linear-gradient(90deg, #0509e3 0%, #c500cc 100%);
+  padding: 10px 50px;
+  border: none;
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+  border-radius: 50px;
+  transition: 1000ms;
+  transform: translateY(0);
+}
+
+#previousShips_button:hover {
+  transition: 1000ms;
+  transform: translateY(-6px);
+  background: linear-gradient(90deg, #0066cc 0%, #c500cc 100%);
+  color: 332fd0;
+  border: none;
+}
+.close {
+  display: flex;
+  position: absolute;
+  right: 20px;
+
+  font-weight: 0;
+  font-size: 14px;
+  color: black;
+  background: linear-gradient(90deg, #0509e3 0%, #c500cc 100%);
+  padding: 10px;
+  border: none;
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+  border-radius: 4px;
+  transition: 1000ms;
+  transform: translateY(0);
+}
+
+.close:hover {
+  transition: 1000ms;
+  transform: translateY(-6px);
+  background: linear-gradient(90deg, #0066cc 0%, #c500cc 100%);
+  color: 332fd0;
+  border: none;
 }
